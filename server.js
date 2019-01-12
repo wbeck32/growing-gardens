@@ -3,7 +3,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-
+const https = require('https');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -14,18 +14,17 @@ app.use(bodyParser.urlencoded({
 
 
 // API calls
-app.get('/api/hello', (req, res) => {
-    res.send({
-        toDoList
+app.get('/mapsAPICode', function(req, res){
+    var URL = 'https://maps.googleapis.com/maps/api/js?key=process.env.API_KEY&callback=initMap';
+    //  if (process.env.NODE_ENV === 'production'){
+    //      URL += '&key=' + process.env.GOOGLEAPIKEY;
+    //  }
+    https.get(URL, function(response){
+        res.set('Content-Type','text/javascript');
+        response.pipe(res);
     });
 });
 
-app.post('/api/addItem', (req, res) => {
-    // displays in the terminal
-    console.log(req.body);
-    toDoList.push(req.body.post);
-    res.send('Item added!');
-});
 
 if (process.env.NODE_ENV === 'production') {
     // Serve any static files
