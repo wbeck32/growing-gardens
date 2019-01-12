@@ -1,6 +1,6 @@
 // Imports the Google Cloud client library
-const {
-Translate
+let {
+  Translate
 } = require('@google-cloud/translate');
 
 // Your Google Cloud Platform project ID

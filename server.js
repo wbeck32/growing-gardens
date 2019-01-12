@@ -1,3 +1,5 @@
+/*eslint linebreak-style: ["error", "unix"]*/
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -6,7 +8,9 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended : true
+}));
 
 // To Do List / Faux data store
 let toDoList = [
@@ -16,7 +20,9 @@ let toDoList = [
 
 // API calls
 app.get('/api/hello', (req, res) => {
-  res.send({ toDoList });
+  res.send({
+    toDoList
+  });
 });
 
 app.post('/api/addItem', (req, res) => {
@@ -31,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
 
   // Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
+  app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
