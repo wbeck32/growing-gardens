@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ListItem from './ListItem.js';
+// import ListItem from './ListItem.js';
 
 class App extends Component {
   state = {
@@ -9,15 +9,15 @@ class App extends Component {
     responseToPost: ''
   };
 
-  componentDidMount() {
-    this.updateTodoList();
-  }
+  // componentDidMount() {
+  //   this.updateTodoList();
+  // }
 
-  updateTodoList() {
-    this.callApi()
-      .then(res => this.setState({ list: res.toDoList }))
-      .catch(err => console.log(err));
-  }
+  // updateTodoList() {
+  //   this.callApi()
+  //     .then(res => this.setState({ list: res.toDoList }))
+  //     .catch(err => console.log(err));
+  // }
 
   callApi = async () => {
     const response = await fetch('/api/hello');
@@ -54,7 +54,7 @@ class App extends Component {
        {this.state.list.length > 0 && this.state.list.map((listItem, index) => (
           <ListItem text={listItem} />
         ))}
-          
+
         </ul>
         <form onSubmit={this.handleSubmit}>
           <p>
